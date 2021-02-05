@@ -3,14 +3,16 @@ var express = require("express");
 var logger = require("morgan");
 var cors = require("cors");
 // routes
+require('dotenv').config();
+require("./config/mongo");
 var routes = require("./routes");
 // middlewares
 var { decode } = require('./middleware/jwt');
 
 const app = express();
-
+ 
 /** Get port from environment and store in Express. */
-const port = process.env.PORT || "3000";
+const port = process.env.PORT;
 app.set("port", port);
 
 app.use(logger("dev"));
