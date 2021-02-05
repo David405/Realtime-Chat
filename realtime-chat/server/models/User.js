@@ -1,17 +1,12 @@
 var mongoose = require("mongoose");
-var { uuidv4 } = require("uuid");
 
-export const USER_TYPES = {
+const USER_TYPES = {
   CONSUMER: "consumer",
   SUPPORT: "support",
 };
 
 const userSchema = new mongoose.Schema(
-  {
-    _id: {
-      type: String,
-      default: () => uuidv4().replace(/\-/g, ""),
-    },
+   {
     firstName: String,
     lastName: String,
     type: String,
@@ -21,5 +16,9 @@ const userSchema = new mongoose.Schema(
     collection: "users",
   }
 );
+const User = mongoose.model("User", userSchema);
 
-export default mongoose.model("User", userSchema);
+module.exports = {
+    USER_TYPES,
+    User
+}
